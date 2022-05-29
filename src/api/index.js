@@ -15,12 +15,23 @@ const options = {
   }
 }
 
-export const getPlacesData = async () => {
+export const getPlacesData = async (bounds, sw, ne) => {
   try {
-    //request
     const {
       data: { data }
-    } = await axios.get(URL, options)
+    } = await axios.get(URL, {
+      params: {
+        bl_latitude: sw.lat,
+        bl_longitude: sw.lng,
+        tr_longitude: ne.lng,
+        tr_latitude: ne.lat
+      },
+      headers: {
+        'x-rapidapi-key': 'edc02aaa9emsh185d154bcafc360p1522bcjsn65e24dc3ff3a',
+        'x-rapidapi-host': 'travel-advisor.p.rapidapi.com'
+      }
+    })
+
     return data
   } catch (error) {
     console.log(error)
