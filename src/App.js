@@ -38,8 +38,6 @@ const App = () => {
     if (bounds.sw && bounds.ne) {
       setIsLoading(true)
       getPlacesData(type, bounds.sw, bounds.ne).then(data => {
-        console.log(data)
-
         getWeatherData(coordinates.lat, coordinates.lng).then(data =>
           setWeatherData(data)
         )
